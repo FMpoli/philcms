@@ -17,11 +17,13 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Tabs;
 
 use Filament\Forms\Set;
 use Filament\Forms\Get;
 use Illuminate\Support\Str;
+use Filament\Forms\Components\Actions\Action;
 
 use App\Filament\Resources\PageResource\Blocks\Anchor;
 use App\Filament\Resources\PageResource\Blocks\CallToAction;
@@ -63,10 +65,25 @@ class PageResource extends Resource
                                 ->required()
                                 ->maxLength(255)
                                 ->unique(Page::class, 'slug'),
-                                ]),
+                                
+                            Toggle::make('is_published')
+                                ->label('Published')
+                                ->default(true),
+                            ]),
                     Tabs\Tab::make('Content')
                         ->schema([
                             Builder::make('content')
+                                ->blockNumbers(false)
+                                ->addActionLabel('Add a new block')
+                                ->reorderableWithButtons()
+                                ->collapsed()
+                                ->cloneable()
+                                ->blockPickerColumns(2)
+                                ->blockPickerWidth('2xl')
+                                ->deleteAction(
+                                    fn (Action $action) => $action->requiresConfirmation(),
+                                )
+                                ->blockPreviews()
                                 ->blocks([
                                     Anchor::make(),
                                     CallToAction::make(),
@@ -76,6 +93,7 @@ class PageResource extends Resource
                                     HeroWithBckVideo::make(),
                                     HeroWithImage::make(),
                                     HeroWithVideo::make(),
+                                
                             ]),
                         ]),
                     Tabs\Tab::make('SEO')
@@ -95,7 +113,13 @@ class PageResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\Text::make('title')
+                    ->primary()
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\Text::make('slug')
+                    ->searchable()
+                    ->sortable(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),

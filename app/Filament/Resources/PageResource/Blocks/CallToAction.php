@@ -12,7 +12,7 @@ class CallToAction
         return Block::make('call-to-action')
             ->label('Call to action')
             ->icon('heroicon-m-bolt')
-            
+            ->preview('filament.content.blocks-previews.cta')
             ->schema([
                 TextInput::make('title')
                     ->label('Title')
