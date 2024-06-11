@@ -17,6 +17,7 @@ class HeroWithBckVideo
     {
         return Block::make('hero-with-bck-video')
             ->icon('heroicon-m-video-camera')
+            ->preview('filament.content.blocks-previews.herobckvideo')
             ->schema([
                 TextInput::make('title'),
                 TextInput::make('subtitle'),

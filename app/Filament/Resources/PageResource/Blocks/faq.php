@@ -12,6 +12,7 @@ class faq
     {
         return Block::make('faq')
             ->icon('heroicon-m-queue-list')
+            ->preview('filament.content.blocks-previews.faq')
             ->schema([
                 TextInput::make('title')
                             ->label('Title')

@@ -11,6 +11,7 @@ class Anchor
     {
         return Block::make('anchor')
             ->icon('heroicon-m-link')
+            ->preview('filament.content.blocks-previews.anchor')
             ->schema([
                 TextInput::make('anchor')
                     ->label('Anchor')

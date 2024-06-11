@@ -20,6 +20,8 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Tabs;
 
+use Filament\Tables\Columns\TextColumn;
+
 use Filament\Forms\Set;
 use Filament\Forms\Get;
 use Illuminate\Support\Str;
@@ -113,11 +115,11 @@ class PageResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\Text::make('title')
-                    ->primary()
+                Tables\Columns\TextColumn::make('title')
+                   
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\Text::make('slug')
+                Tables\Columns\TextColumn::make('slug')
                     ->searchable()
                     ->sortable(),
             ])

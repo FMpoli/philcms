@@ -9,6 +9,7 @@ class LatestNews
     {
         return Block::make('latest-news')
             ->icon('heroicon-m-newspaper')
+            ->preview('filament.content.blocks-previews.latestnews')
             ->schema([
                 //
             ]);

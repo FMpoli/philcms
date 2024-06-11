@@ -19,6 +19,7 @@ class HeroWithVideo
         return Block::make('hero-with-video')
             
             ->icon('heroicon-m-video-camera')
+            ->preview('filament.content.blocks-previews.herovideo')
             ->schema([
                 TextInput::make('title'),
                 TextInput::make('subtitle'),

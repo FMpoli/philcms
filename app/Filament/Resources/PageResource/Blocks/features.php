@@ -15,6 +15,7 @@ class features
     public static function make(): Block    {
         return Block::make('features')
             ->icon('heroicon-m-queue-list')
+            ->preview('filament.content.blocks-previews.features')
             ->schema([
                 TextInput::make('title')
                         ->label('Title')

@@ -18,6 +18,7 @@ class HeroWithBckImage
         {
         return Block::make('hero-with-bck-image')
             ->icon('heroicon-m-photo')
+            ->preview('filament.content.blocks-previews.herobckimage')
             ->schema([
                 TextInput::make('title')
                     ->label('Title')

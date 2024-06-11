@@ -19,6 +19,7 @@ class HeroWithImage
     {
         return Block::make('hero-with-image')
             ->icon('heroicon-m-photo')
+            ->preview('filament.content.blocks-previews.heroimage')
             ->schema([
                 TextInput::make('title')
                     ->label('Title')
