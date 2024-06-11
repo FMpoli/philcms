@@ -4,31 +4,33 @@ namespace App\Filament\Resources\PageResource\Blocks;
 
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\ToggleButtons;
+use Filament\Forms\Components\FileUpload;
 use Guava\FilamentIconPicker\Forms\IconPicker;
 use Guava\FilamentIconPicker\Layout;
 use Illuminate\Support\HtmlString;
 
-class features
+class HeroWithBckVideo
 {
-    public static function make(): Block    {
-        return Block::make('features')
-            ->icon('heroicon-m-queue-list')
+    public static function make(): Block
+    {
+        return Block::make('hero-with-bck-video')
+            ->icon('heroicon-m-video-camera')
             ->schema([
-                TextInput::make('title')
-                        ->label('Title')
-                        ->required(),
-                TextInput::make('subtitle')
-                        ->label('Sub title')
-                        ->required(),
-                Repeater::make('features')
-                    ->schema([                     
-                        TextInput::make('feature_title')
-                            ->columnspan(2)
-                            ->label('Feature Title'),
-                        Textarea::make('feature_description')
-                            ->label('Feature Description'),
+                TextInput::make('title'),
+                TextInput::make('subtitle'),
+                FileUpload::make('video')
+                    ->label('Video')
+                    ->placeholder('Upload the video file'),
+                Repeater::make('buttons')
+                    ->schema([
+                        TextInput::make('button_text')
+                            ->label('Button text')
+                            ->placeholder('Enter the button text'),
+                        TextInput::make('button_url')
+                            ->label('Button url')
+                            ->placeholder('Enter the button url'),
                         IconPicker::make('icon')
                             ->layout(Layout::ON_TOP)
                             ->label('Icon')
@@ -41,6 +43,7 @@ class features
                             ])
                     ])
                     ->minItems(0)
+                    ->maxItems(1)
                     ->columns(2),
             ]);
     }

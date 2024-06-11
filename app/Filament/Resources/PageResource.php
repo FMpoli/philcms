@@ -25,6 +25,10 @@ use App\Filament\Resources\PageResource\Blocks\Anchor;
 use App\Filament\Resources\PageResource\Blocks\CallToAction;
 use App\Filament\Resources\PageResource\Blocks\Faq;
 use App\Filament\Resources\PageResource\Blocks\Features;
+use App\Filament\Resources\PageResource\Blocks\HeroWithBckImage;
+use App\Filament\Resources\PageResource\Blocks\HeroWithBckVideo;
+use App\Filament\Resources\PageResource\Blocks\HeroWithImage;
+use App\Filament\Resources\PageResource\Blocks\HeroWithVideo;
 
 class PageResource extends Resource
 {
@@ -42,6 +46,10 @@ class PageResource extends Resource
                         CallToAction::make(),
                         Faq::make(),
                         Features::make(),
+                        HeroWithBckImage::make(),
+                        HeroWithBckVideo::make(),
+                        HeroWithImage::make(),
+                        HeroWithVideo::make(),
                 ]),
                 TextInput::make('title')
                     ->label('Page title')
