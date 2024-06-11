@@ -15,7 +15,7 @@ class Anchor
             ->schema([
                 TextInput::make('anchor')
                     ->label('Anchor')
-                    ->placeholder('Example: #about'),
+                    ->placeholder('Example: about'),
             ]);
     }
 }

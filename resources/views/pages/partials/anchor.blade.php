@@ -1,1 +1,1 @@
-<div id="{{ $anchor }}"></div>
+<div id="{{ $block['data']['anchor'] }}"></div>
