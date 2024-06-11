@@ -17,6 +17,8 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Tabs;
+
 use Filament\Forms\Set;
 use Filament\Forms\Get;
 use Illuminate\Support\Str;
@@ -39,44 +41,54 @@ class PageResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                Builder::make('content')
-                    ->blocks([
-                        Anchor::make(),
-                        CallToAction::make(),
-                        Faq::make(),
-                        Features::make(),
-                        HeroWithBckImage::make(),
-                        HeroWithBckVideo::make(),
-                        HeroWithImage::make(),
-                        HeroWithVideo::make(),
-                ]),
-                TextInput::make('title')
-                    ->label('Page title')
-                    ->maxLength(255)
-                    ->live(debounce: 500)
-                    ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
-                        if (($get('slug') ?? '') !== Str::slug($old)) {
-                            return;
-                        }
-                    
-                        $set('slug', Str::slug($state));
-                    })
-                    ->required(),
-                TextInput::make('slug')
-                    ->label('slug')
-                    ->required()
-                    ->maxLength(255)
-                    ->unique(Page::class, 'slug'),
-                Textarea::make('description')
-                    ->label('description'),
-                TextInput::make('meta_title')
-                    ->label('meta title')
-                    ->maxLength(255),
-                Textarea::make('meta_description')
-                    ->label('meta description')
-                    ->maxLength(255),
-            ]);
+        ->schema([
+            Tabs::make('Tabs')
+                ->tabs([
+                    Tabs\Tab::make('Details')
+                        ->schema([
+                            TextInput::make('title')
+                                ->label('Page title')
+                                ->maxLength(255)
+                                ->live(debounce: 500)
+                                ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
+                                    if (($get('slug') ?? '') !== Str::slug($old)) {
+                                        return;
+                                    }
+                                
+                                    $set('slug', Str::slug($state));
+                                })
+                                ->required(),
+                            TextInput::make('slug')
+                                ->label('slug')
+                                ->required()
+                                ->maxLength(255)
+                                ->unique(Page::class, 'slug'),
+                                ]),
+                    Tabs\Tab::make('Content')
+                        ->schema([
+                            Builder::make('content')
+                                ->blocks([
+                                    Anchor::make(),
+                                    CallToAction::make(),
+                                    Faq::make(),
+                                    Features::make(),
+                                    HeroWithBckImage::make(),
+                                    HeroWithBckVideo::make(),
+                                    HeroWithImage::make(),
+                                    HeroWithVideo::make(),
+                            ]),
+                        ]),
+                    Tabs\Tab::make('SEO')
+                        ->schema([
+                            TextInput::make('meta_title')
+                                ->label('meta title')
+                                ->maxLength(255),
+                            Textarea::make('meta_description')
+                                ->label('meta description')
+                                ->maxLength(255),
+                        ]),
+                ])
+            ])->columns(1);
     }
 
     public static function table(Table $table): Table
