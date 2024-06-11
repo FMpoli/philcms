@@ -16,6 +16,8 @@
             @include('pages.partials.anchor', ['block' => $block])
         @elseif ($block['type'] == 'hero-with-bck-video')
             @include('pages.partials.herobckvideo', ['block' => $block])
+        @elseif ($block['type'] == 'hero-with-image')
+            @include('pages.partials.heroimage', ['block' => $block])
         @endif
     @endforeach
 @endsection

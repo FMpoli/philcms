@@ -1,8 +1,12 @@
+
+@php
+    $mediaValue = reset($media);
+@endphp
 <section class="bg-white dark:bg-gray-900">
     <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
         @if($image_position == 'left')
             <div class="lg:col-span-5 lg:flex lg:justify-start mb-4 md:mb-0">
-                <x-curator-glider :media="$media" class="w-full rounded-3xl lg:w-auto"/>
+                <img class="w-full rounded-3xl lg:w-auto" src="{{Storage::url($mediaValue['path'])}}">
             </div>
         @endif
         <div class="lg:col-span-7 @if($image_position == 'left')lg:ml-10 @endif">
@@ -17,7 +21,7 @@
         </div>
         @if($image_position == 'right')
             <div class="lg:col-span-5 lg:flex mt-4 md:mt-0">
-                <x-curator-glider :media="$media" class="w-full rounded-3xl lg:w-auto"/>
+                <img class="w-full rounded-3xl lg:w-auto" src="{{Storage::url($mediaValue['path'])}}">
             </div>
         @endif
     </div>

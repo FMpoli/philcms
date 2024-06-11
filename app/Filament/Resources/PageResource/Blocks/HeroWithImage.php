@@ -6,7 +6,7 @@ use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Components\Repeater;
-// use Awcodes\Curator\Components\Forms\CuratorPicker;
+use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Guava\FilamentIconPicker\Forms\IconPicker;
 use Guava\FilamentIconPicker\Layout;
 use Illuminate\Support\HtmlString;
@@ -28,8 +28,8 @@ class HeroWithImage
                 TextInput::make('subtitle')
                     ->label('Sub title')
                     ->placeholder('Enter the subtitle'),
-                // CuratorPicker::make('media')
-                //     ->required(),
+                CuratorPicker::make('media')
+                    ->required(),
                 ToggleButtons::make('image_position')
                     ->label('Image position')
                     ->default('left')
