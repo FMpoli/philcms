@@ -13,7 +13,7 @@ class Page extends Model
     protected $fillable = [
         'title',
         'slug',
-        'builder',
+        'content',
         'description',
         'meta_title',
         'meta_description',
@@ -21,7 +21,11 @@ class Page extends Model
     ];
 
     protected $casts = [
-        'builder' => 'array',
+        'title' => 'array',
+        'slug' => 'array',
+        'meta_title' => 'array',
+        'meta_description' => 'array',
+        'content' => 'array',
         'published' => 'boolean',
     ];
 }

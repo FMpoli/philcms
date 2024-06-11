@@ -10,8 +10,21 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\Builder;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Set;
+use Filament\Forms\Get;
+use Illuminate\Support\Str;
+
+use App\Filament\Resources\PageResource\Blocks\Anchor;
+use App\Filament\Resources\PageResource\Blocks\CallToAction;
+use App\Filament\Resources\PageResource\Blocks\Faq;
+use App\Filament\Resources\PageResource\Blocks\Features;
 
 class PageResource extends Resource
 {
@@ -23,7 +36,38 @@ class PageResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Builder::make('content')
+                    ->blocks([
+                        Anchor::make(),
+                        CallToAction::make(),
+                        Faq::make(),
+                        Features::make(),
+                ]),
+                TextInput::make('title')
+                    ->label('Page title')
+                    ->maxLength(255)
+                    ->live(debounce: 500)
+                    ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
+                        if (($get('slug') ?? '') !== Str::slug($old)) {
+                            return;
+                        }
+                    
+                        $set('slug', Str::slug($state));
+                    })
+                    ->required(),
+                TextInput::make('slug')
+                    ->label('slug')
+                    ->required()
+                    ->maxLength(255)
+                    ->unique(Page::class, 'slug'),
+                Textarea::make('description')
+                    ->label('description'),
+                TextInput::make('meta_title')
+                    ->label('meta title')
+                    ->maxLength(255),
+                Textarea::make('meta_description')
+                    ->label('meta description')
+                    ->maxLength(255),
             ]);
     }
 
@@ -66,7 +110,7 @@ class PageResource extends Resource
         ];
     }
 
-    public static function getEloquentQuery(): Builder
+    public static function getEloquentQuery(): EloquentBuilder
     {
         return parent::getEloquentQuery()
             ->withoutGlobalScopes([
