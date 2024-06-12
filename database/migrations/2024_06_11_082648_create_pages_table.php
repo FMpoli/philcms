@@ -20,7 +20,7 @@ return new class extends Migration
             $table->json('description')->nullable();        // Descrizione della pagina
             $table->json('meta_title')->nullable();         // Meta title per SEO
             $table->json('meta_description')->nullable();   // Meta description per SEO
-            $table->boolean('published')->default(false);   // Stato di pubblicazione
+            $table->boolean('is_published')->default(false);   // Stato di pubblicazione
             $table->timestamps();
             $table->softDeletes();
         });

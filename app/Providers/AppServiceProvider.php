@@ -3,6 +3,11 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
+use RyanChandler\FilamentNavigation\Models\Navigation;
+
+use BladeUI\Icons\Factory;
+use App\Models\Page;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $mainMenuItems = Navigation::fromHandle('main-menu');
+        View::share('mainMenuItems', $mainMenuItems);
+
+        $footerMenuItems = Navigation::fromHandle('footer-menu');
+        View::share('footerMenuItems', $footerMenuItems);
     }
 }

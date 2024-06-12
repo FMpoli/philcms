@@ -18,7 +18,7 @@ class Page extends Model
         'description',
         'meta_title',
         'meta_description',
-        'published',
+        'is_published',
     ];
 
     protected $casts = [

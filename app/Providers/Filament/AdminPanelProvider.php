@@ -17,6 +17,10 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use RyanChandler\FilamentNavigation\FilamentNavigation;
+use App\Models\Page;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -50,7 +54,25 @@ class AdminPanelProvider extends PanelProvider
                     ->navigationSort(3)
                     ->navigationCountBadge()
                     ->registerNavigation(true)
-                    ->defaultListView('grid' || 'list')
+                    ->defaultListView('grid' || 'list'),
+                    FilamentNavigation::make()
+                        ->itemType('Anchor link', [
+                            TextInput::make('id')
+                                ->label('ID')
+                                ->required(),
+                        
+                        ])
+                        ->itemType('Heading', [
+                            TextInput::make('name')
+                                ->hidden()
+                                ->required(),
+                        ])
+                        ->itemType('Page', [
+                            Select::make('url')
+                                ->options(Page::where('is_published', 1)->pluck('title', 'slug'))
+                                ->label('Page')
+                                ->required(),
+                        ])
                     
             ])
             ->middleware([

@@ -23,13 +23,13 @@
         }
     }">
         <header>
-            <!-- @ include('includes.menu') -->
+            @include('includes.menu')
         </header>
         <div class="content mx-auto" :class="{'pt-16': !isHome}">
             @yield('content')
         </div>
         <footer>
-            <!-- @ include('includes.footer') -->
+            @include('includes.footer')
         </footer>
     </div>
 </body>
