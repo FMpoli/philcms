@@ -1,6 +1,9 @@
+@php
+    $videoUrl = is_array($block['data']['video']) ? reset($block['data']['video']) : $block['data']['video'];
+@endphp
 <section class="relative h-screen flex items-center justify-center overflow-hidden">
     <video autoplay loop muted playsinline class="hero-bg-video" controls>
-        <source src="{{ Storage::url($block['data']['video']) }}" type="video/mp4" />
+        <source src="{{ Storage::url($videoUrl) }}" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
 

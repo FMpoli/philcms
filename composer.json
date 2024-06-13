@@ -11,6 +11,7 @@
         "guava/filament-icon-picker": "^2.0",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
+        "mvenghaus/filament-plugin-translatable-inline": "^3.0",
         "ryangjchandler/filament-navigation": "v1.0.0-beta5"
     },
     "require-dev": {

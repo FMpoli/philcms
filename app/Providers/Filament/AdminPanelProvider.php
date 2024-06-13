@@ -21,6 +21,7 @@ use RyanChandler\FilamentNavigation\FilamentNavigation;
 use App\Models\Page;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\SpatieLaravelTranslatablePlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -72,7 +73,9 @@ class AdminPanelProvider extends PanelProvider
                                 ->options(Page::where('is_published', 1)->pluck('title', 'slug'))
                                 ->label('Page')
                                 ->required(),
-                        ])
+                        ]),
+                    SpatieLaravelTranslatablePlugin::make()
+                        ->defaultLocales(['en', 'it','es','fr']),
                     
             ])
             ->middleware([

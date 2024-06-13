@@ -86,6 +86,16 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Supported Application Locales
+    |--------------------------------------------------------------------------
+    |
+    | Our supported locales will have available frontend and model
+    | translations.
+    |
+    */
+    'supported_locales' => ['en', 'it', 'es', 'fr'], // Aggiungi tutte le lingue supportate
+    /*
+    |--------------------------------------------------------------------------
     | Encryption Key
     |--------------------------------------------------------------------------
     |

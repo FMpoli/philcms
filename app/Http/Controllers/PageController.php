@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Page;
 use Illuminate\Support\Facades\View;
-
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -14,9 +13,11 @@ class PageController extends Controller
     public function show($slug)
     {
         try {
+            // Recupera la lingua corrente
+            $locale = app()->getLocale();
 
-            $jsonSlug = json_encode($slug);
-            $page = Page::where('slug', $jsonSlug)->firstOrFail();
+            // Cerca la pagina in base allo slug nella lingua corrente
+            $page = Page::where("slug->{$locale}", $slug)->firstOrFail();
             
             return view('pages.default', compact('page'));
 

@@ -35,9 +35,13 @@ use App\Filament\Resources\PageResource\Blocks\HeroWithBckImage;
 use App\Filament\Resources\PageResource\Blocks\HeroWithBckVideo;
 use App\Filament\Resources\PageResource\Blocks\HeroWithImage;
 use App\Filament\Resources\PageResource\Blocks\HeroWithVideo;
+use Mvenghaus\FilamentPluginTranslatableInline\Forms\Components\TranslatableContainer;
+use Filament\Resources\Concerns\Translatable;
 
 class PageResource extends Resource
 {
+    use Translatable;
+
     protected static ?string $model = Page::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
@@ -49,7 +53,7 @@ class PageResource extends Resource
             Tabs::make('Tabs')
                 ->tabs([
                     Tabs\Tab::make('Details')
-                        ->schema([
+                        ->schema([     
                             TextInput::make('title')
                                 ->label('Page title')
                                 ->maxLength(255)
@@ -67,7 +71,6 @@ class PageResource extends Resource
                                 ->required()
                                 ->maxLength(255)
                                 ->unique(Page::class, 'slug'),
-                                
                             Toggle::make('is_published')
                                 ->label('Published')
                                 ->default(true),

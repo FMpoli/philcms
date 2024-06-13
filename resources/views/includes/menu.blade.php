@@ -19,10 +19,7 @@
                 @endforeach
                 <div class="relative" @mouseenter="langOpen = true" @mouseleave="langOpen = false">
                     <button @click="langOpen = !langOpen" class="focus:outline-none px-4 py-2 rounded" :class="{'bg-blue-500 text-white': langOpen, 'bg-transparent': !langOpen}">Language</button>
-                    <div x-show="langOpen" class="absolute mt-2 bg-white rounded shadow-lg">
-                        <a href="{{ url('locale/en') }}" class="block px-4 py-2 text-black hover:bg-blue-500 hover:text-white">English</a>
-                        <a href="{{ url('locale/es') }}" class="block px-4 py-2 text-black hover:bg-blue-500 hover:text-white">Español</a>
-                    </div>
+                   
                 </div>
             </div>
             <div class="md:hidden flex items-center">
@@ -63,7 +60,7 @@
                 <button @click="langOpen = !langOpen" class="block w-full text-left focus:outline-none py-2 mt-4" :class="{'bg-blue-500 text-white': langOpen, 'bg-transparent': !langOpen}">Language</button>
                 <div x-show="langOpen" class="mt-2 bg-white rounded shadow-lg">
                     <a href="{{ url('locale/en') }}" class="block px-4 py-2 text-black hover:bg-blue-500 hover:text-white">English</a>
-                    <a href="{{ url('locale/es') }}" class="block px-4 py-2 text-black hover:bg-blue-500 hover:text-white">Español</a>
+                    <a href="{{ url('locale/es') }}" class="block px-4 py-2 text-black hover:bg-blue-500 hover:text-white">Italiano</a>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 @php
-    $mediaValue = reset($video);
+    $mediaValue = is_array($video) ? reset($video) : $video;
 @endphp
 
 <section class="relative h-screen flex items-center justify-center overflow-hidden">
