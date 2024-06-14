@@ -7,7 +7,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\FileUpload;
-// use Awcodes\Curator\Components\Forms\CuratorPicker;
+use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Guava\FilamentIconPicker\Forms\IconPicker;
 use Guava\FilamentIconPicker\Layout;
 use Illuminate\Support\HtmlString;
@@ -34,8 +34,8 @@ class HeroWithVideo
                         'left' => 'Left',
                         'right' => 'Right'
                     ]),
-                // CuratorPicker::make('video_thumbnail')
-                //     ->label('Video thumbnail'),
+                CuratorPicker::make('video_thumbnail')
+                    ->label('Video thumbnail'),
                 Repeater::make('buttons')
                     ->schema([
                         TextInput::make('button_text')

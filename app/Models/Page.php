@@ -35,32 +35,34 @@ class Page extends Model
         'slug' => 'array',
         'meta_title' => 'array',
         'meta_description' => 'array',
-        // 'content' => 'array', // Mantieni commentata questa riga
         'published' => 'boolean',
     ];
 
-    // Definiamo un accessor per il campo 'content'
     public function getContentAttribute($value)
     {
         \Log::info('Original content value: ', ['value' => $value]);
 
         if (empty($value)) {
-            return null;
+            return [];
         }
 
         $content = is_string($value) ? json_decode($value, true) : $value;
 
         \Log::info('Decoded content value: ', ['content' => $content]);
 
-        if (is_array($content) || is_object($content)) {
+        if (is_array($content)) {
             foreach ($content as $key => &$langContent) {
                 \Log::info('Lang content value before processing: ', ['key' => $key, 'langContent' => $langContent]);
 
-                if (is_string($langContent) && !empty($langContent)) {
+                if (is_string($langContent)) {
                     $langContent = json_decode($langContent, true);
                 }
 
-                if (!is_array($langContent) && !is_object($langContent)) {
+                if (isset($langContent['data']['video']) && !is_array($langContent['data']['video'])) {
+                    $langContent['data']['video'] = [$langContent['data']['video']];
+                }
+
+                if (!is_array($langContent)) {
                     $langContent = [$langContent];
                 }
 
@@ -71,28 +73,40 @@ class Page extends Model
         return $content;
     }
 
-    // Definiamo un mutator per il campo 'content'
     public function setContentAttribute($value)
     {
+        \Log::info('Original set content value: ', ['value' => $value]);
+
         if (empty($value)) {
-            $this->attributes['content'] = null;
+            $this->attributes['content'] = json_encode([]);
             return;
         }
 
         $content = is_string($value) ? json_decode($value, true) : $value;
 
-        if (is_array($content) || is_object($content)) {
+        \Log::info('Decoded set content value: ', ['content' => $content]);
+
+        if (is_array($content)) {
             foreach ($content as $key => &$langContent) {
-                if (is_string($langContent) && !empty($langContent)) {
+                \Log::info('Set lang content value before processing: ', ['key' => $key, 'langContent' => $langContent]);
+
+                if (is_string($langContent)) {
                     $langContent = json_decode($langContent, true);
                 }
 
-                if (!is_array($langContent) && !is_object($langContent)) {
+                if (isset($langContent['data']['video']) && !is_array($langContent['data']['video'])) {
+                    $langContent['data']['video'] = [$langContent['data']['video']];
+                }
+
+                if (!is_array($langContent)) {
                     $langContent = [$langContent];
                 }
+
+                \Log::info('Set lang content value after processing: ', ['key' => $key, 'langContent' => $langContent]);
             }
         }
 
         $this->attributes['content'] = json_encode($content);
+        \Log::info('Final set content value: ', ['content' => $this->attributes['content']]);
     }
 }

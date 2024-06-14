@@ -9,6 +9,8 @@ Route::get('/', function () {
 
 Route::get('/{slug}', [PageController::class, 'show'])->name('page.default');
 
+Route::put('/pages/{id}', [PageController::class, 'update']);
+
 // Route::middleware([SetLocale::class])->group(function () {
 //     Route::get('/{slug}', [PageController::class, 'show'])->name('page.default');
 // });

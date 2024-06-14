@@ -1,6 +1,9 @@
+@php
+    $mediaValue = is_array($video) ? reset($video) : $video;
+    $video_thumbnail = reset($video_thumbnail);
+@endphp
 <section class="bg-white dark:bg-gray-900">
-    <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 [&_[x-cloak]]:hidden" x-data="{ modalOpen: false }">
-        
+    <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 [&_[x-cloak]]:hidden" x-data="{ modalOpen: false }">   
         @if($video_position == 'left')
             <div class="lg:col-span-5 lg:flex lg:justify-end mb-4 md:mb-0">
                 <div class="[&_[x-cloak]]:hidden">
@@ -11,7 +14,10 @@
                         aria-controls="modal"
                         aria-label="Watch the video"
                     >
-                        <x-curator-glider :media="$video_thumbnail" class="w-full rounded-3xl lg:w-auto"/>
+                        <video class="w-full rounded-3xl lg:w-auto" controls>
+                            <source src="{{Storage::url($mediaValue)}}" type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
                         <!-- Play icon -->
                         <svg class="absolute pointer-events-none group-hover:scale-110 transition-transform duration-300 ease-in-out" xmlns="http://www.w3.org/2000/svg" width="72" height="72">
                             <circle class="fill-white" cx="36" cy="36" r="36" fill-opacity=".8" />
@@ -69,10 +75,10 @@
                     @click.outside="modalOpen = false"
                     @keydown.escape.window="modalOpen = false"
                 >
-                    <video x-init="$watch('modalOpen', value => value ? $el.play() : $el.pause())" width="1920" height="1080" loop controls>
-                        <source src="{{ Storage::url($video) }}" type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
+                <video class="w-full rounded-3xl lg:w-auto" controls>
+                    <source src="{{Storage::url($mediaValue)}}" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
                 </div>
             </div>
         </div>
@@ -87,7 +93,7 @@
                         aria-controls="modal"
                         aria-label="Watch the video"
                     >
-                        <x-curator-glider :media="$video_thumbnail" class="w-full rounded-3xl lg:w-auto"/>
+                        <img class="w-full rounded-3xl lg:w-auto" src="{{Storage::url($video_thumbnail['path'])}}">
                         <!-- Play icon -->
                         <svg class="absolute pointer-events-none group-hover:scale-110 transition-transform duration-300 ease-in-out" xmlns="http://www.w3.org/2000/svg" width="72" height="72">
                             <circle class="fill-white" cx="36" cy="36" r="36" fill-opacity=".8" />

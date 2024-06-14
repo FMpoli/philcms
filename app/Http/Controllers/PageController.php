@@ -27,4 +27,33 @@ class PageController extends Controller
             abort(500);
         }
     }
+
+    public function update(Request $request, $id)
+    {
+        $data = $request->all();
+
+        // Verifica e decodifica JSON se necessario
+        if (isset($data['content']) && is_string($data['content'])) {
+            $data['content'] = json_decode($data['content'], true);
+        }
+
+        // Assicurati che 'content' sia un array
+        if (!is_array($data['content'])) {
+            $data['content'] = [];
+        }
+
+        // Verifica che 'video' sia un array
+        foreach ($data['content'] as &$langContent) {
+            if (isset($langContent['data']['video']) && !is_array($langContent['data']['video'])) {
+                $langContent['data']['video'] = [$langContent['data']['video']];
+            }
+        }
+
+        // Salva i dati nel modello
+        $page = Page::find($id);
+        $page->content = $data['content'];
+        $page->save();
+
+        return response()->json(['success' => true]);
+    }
 }
