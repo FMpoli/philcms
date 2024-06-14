@@ -40,19 +40,14 @@ class Page extends Model
 
     public function getContentAttribute($value)
     {
-        \Log::info('Original content value: ', ['value' => $value]);
-
         if (empty($value)) {
             return [];
         }
 
         $content = is_string($value) ? json_decode($value, true) : $value;
 
-        \Log::info('Decoded content value: ', ['content' => $content]);
-
         if (is_array($content)) {
             foreach ($content as $key => &$langContent) {
-                \Log::info('Lang content value before processing: ', ['key' => $key, 'langContent' => $langContent]);
 
                 if (is_string($langContent)) {
                     $langContent = json_decode($langContent, true);
@@ -66,7 +61,6 @@ class Page extends Model
                     $langContent = [$langContent];
                 }
 
-                \Log::info('Lang content value after processing: ', ['key' => $key, 'langContent' => $langContent]);
             }
         }
 
@@ -75,8 +69,6 @@ class Page extends Model
 
     public function setContentAttribute($value)
     {
-        \Log::info('Original set content value: ', ['value' => $value]);
-
         if (empty($value)) {
             $this->attributes['content'] = json_encode([]);
             return;
@@ -84,11 +76,8 @@ class Page extends Model
 
         $content = is_string($value) ? json_decode($value, true) : $value;
 
-        \Log::info('Decoded set content value: ', ['content' => $content]);
-
         if (is_array($content)) {
             foreach ($content as $key => &$langContent) {
-                \Log::info('Set lang content value before processing: ', ['key' => $key, 'langContent' => $langContent]);
 
                 if (is_string($langContent)) {
                     $langContent = json_decode($langContent, true);
@@ -101,12 +90,9 @@ class Page extends Model
                 if (!is_array($langContent)) {
                     $langContent = [$langContent];
                 }
-
-                \Log::info('Set lang content value after processing: ', ['key' => $key, 'langContent' => $langContent]);
             }
         }
 
         $this->attributes['content'] = json_encode($content);
-        \Log::info('Final set content value: ', ['content' => $this->attributes['content']]);
     }
 }

@@ -9,6 +9,10 @@ use RyanChandler\FilamentNavigation\Models\Navigation;
 use BladeUI\Icons\Factory;
 use App\Models\Page;
 
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Route;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -16,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        \App\Http\Middleware\SetLocale::class;
     }
 
     /**
@@ -29,5 +33,11 @@ class AppServiceProvider extends ServiceProvider
 
         $footerMenuItems = Navigation::fromHandle('footer-menu');
         View::share('footerMenuItems', $footerMenuItems);
+
+        //Get all available languages
+        // $locale = Session::get('locale', config('app.locale'));
+        // dd($locale);
+        // App::setLocale($locale);
+        
     }
 }

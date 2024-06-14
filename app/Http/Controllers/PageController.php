@@ -7,17 +7,26 @@ use App\Models\Page;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Session;
+
 
 class PageController extends Controller
 {
-    public function show($slug)
+    public function show($slug = '')
     {
         try {
             // Recupera la lingua corrente
             $locale = app()->getLocale();
-
-            // Cerca la pagina in base allo slug nella lingua corrente
-            $page = Page::where("slug->{$locale}", $slug)->firstOrFail();
+            // Controlla se lo slug è nullo (root)
+            if ($slug == '/' || $slug == '') {
+                // Cerca la pagina home in base alla lingua corrente
+                $page = Page::where("slug->{$locale}", '/')->firstOrFail();
+               
+            } else {
+                // Cerca la pagina in base allo slug nella lingua corrente
+                $page = Page::where("slug->{$locale}", $slug)->firstOrFail();
+                
+            }
             
             return view('pages.default', compact('page'));
 
@@ -27,6 +36,7 @@ class PageController extends Controller
             abort(500);
         }
     }
+
 
     public function update(Request $request, $id)
     {
@@ -55,5 +65,12 @@ class PageController extends Controller
         $page->save();
 
         return response()->json(['success' => true]);
+    }
+
+    public function languageSwitch(Request $request)
+    {
+        $language = $request->input('language');
+        session(['language' => $language]);
+        return redirect()->back()->with(['language_switched' =>  $language]);
     }
 }

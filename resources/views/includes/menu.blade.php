@@ -1,7 +1,12 @@
 <!-- Navigation -->
-<nav x-cloak class="fixed w-full z-10 transition duration-300" x-data="{ open: false, isHovered: false, langOpen: false, isHome: false }"
+<nav x-cloak class="fixed w-full z-10 transition duration-300" x-data="{ open: false, isHovered: false, langOpen: false, isHome: false, languages: [], currentLang: '{{ app()->getLocale() }}' }"
     @mouseenter="isHovered = true" @mouseleave="isHovered = false"
-    x-init="isHome = (window.location.pathname === '/')"
+    x-init="
+        isHome = (window.location.pathname === '/');
+        fetch('/get-languages')
+            .then(response => response.json())
+            .then(data => { languages = data.languages; });
+    "
     :class="{'bg-white bg-opacity-100 text-black': isHovered || isScrolled || open || !isHome, 'bg-transparent text-white': !isHovered && !isScrolled && !open && isHome}">
     <div class="container mx-auto px-6 py-3">
         <div class="flex items-center justify-between">
@@ -17,10 +22,25 @@
                         {{ $item['label'] }}
                     </a>
                 @endforeach
-                <div class="relative" @mouseenter="langOpen = true" @mouseleave="langOpen = false">
-                    <button @click="langOpen = !langOpen" class="focus:outline-none px-4 py-2 rounded" :class="{'bg-blue-500 text-white': langOpen, 'bg-transparent': !langOpen}">Language</button>
-                   
-                </div>
+                <!--div class="relative" @mouseenter="langOpen = true" @mouseleave="langOpen = false">
+                    <button @click="langOpen = !langOpen; console.log(langOpen)" class="focus:outline-none px-4 py-2 rounded" :class="{'bg-blue-500 text-white': langOpen, 'bg-transparent': !langOpen}">Language</button>
+                    <div x-show="langOpen" @click.away="langOpen = false" x-transition x-cloak class="absolute mt-2 bg-white rounded shadow-lg">
+                        <template x-for="lang in languages" :key="lang">
+                            <a href="#" @click.prevent="changeLanguage(lang)" :class="{'bg-blue-500 text-white': currentLang === lang, 'text-black': currentLang !== lang}" class="block px-4 py-2 hover:bg-blue-500 hover:text-white">
+                                <span x-text="lang"></span>
+                            </a>
+                        </template>
+                    </div>
+                </div-->
+                <form action="{{ route('language.switch') }}" method="POST">
+                    @csrf
+                    <select name="language" onchange="this.form.submit()" id="locale" class="px-4 py-2 rounded">
+                            <option value="it">Italiano</option>
+                            <option value="en">English</option>
+                            
+                    </select>
+                    
+                </form>
             </div>
             <div class="md:hidden flex items-center">
                 <button @click="open = !open" class="focus:outline-none" :class="{'text-black': isScrolled || open || !isHome, 'text-white': !isScrolled && !open && isHome}">
@@ -56,13 +76,27 @@
                     {{ $item['label'] }}
                 </a>
             @endforeach
-            <div class="relative hidden">
-                <button @click="langOpen = !langOpen" class="block w-full text-left focus:outline-none py-2 mt-4" :class="{'bg-blue-500 text-white': langOpen, 'bg-transparent': !langOpen}">Language</button>
-                <div x-show="langOpen" class="mt-2 bg-white rounded shadow-lg">
-                    <a href="{{ url('locale/en') }}" class="block px-4 py-2 text-black hover:bg-blue-500 hover:text-white">English</a>
-                    <a href="{{ url('locale/es') }}" class="block px-4 py-2 text-black hover:bg-blue-500 hover:text-white">Italiano</a>
+            <div class="relative">
+                <button @click="langOpen = !langOpen; console.log(langOpen)" class="block w-full text-left focus:outline-none py-2 mt-4" :class="{'bg-blue-500 text-white': langOpen, 'bg-transparent': !langOpen}">Language</button>
+                <div x-show="langOpen" @click.away="langOpen = false" x-transition x-cloak class="mt-2 bg-white rounded shadow-lg">
+                    <template x-for="lang in languages" :key="lang">
+                        <a href="#" @click.prevent="changeLanguage(lang)" :class="{'bg-blue-500 text-white': currentLang === lang, 'text-black': currentLang !== lang}" class="block px-4 py-2 hover:bg-blue-500 hover:text-white">
+                            <span x-text="lang"></span>
+                        </a>
+                    </template>
                 </div>
             </div>
         </div>
     </div>
 </nav>
+
+<script>
+    function changeLanguage(locale) {
+        fetch(`/set-locale/${locale}`)
+            .then(response => {
+                if (response.ok) {
+                    window.location.reload();
+                }
+            });
+    }
+</script>

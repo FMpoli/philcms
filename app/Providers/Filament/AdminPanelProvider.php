@@ -56,26 +56,26 @@ class AdminPanelProvider extends PanelProvider
                     ->navigationCountBadge()
                     ->registerNavigation(true)
                     ->defaultListView('grid' || 'list'),
-                    FilamentNavigation::make()
-                        ->itemType('Anchor link', [
-                            TextInput::make('id')
-                                ->label('ID')
-                                ->required(),
-                        
-                        ])
-                        ->itemType('Heading', [
-                            TextInput::make('name')
-                                ->hidden()
-                                ->required(),
-                        ])
-                        ->itemType('Page', [
-                            Select::make('url')
-                                ->options(Page::where('is_published', 1)->pluck('title', 'slug'))
-                                ->label('Page')
-                                ->required(),
-                        ]),
-                    SpatieLaravelTranslatablePlugin::make()
-                        ->defaultLocales(['en', 'it','es','fr']),
+                FilamentNavigation::make()
+                    ->itemType('Anchor link', [
+                        TextInput::make('id')
+                            ->label('ID')
+                            ->required(),
+                    
+                    ])
+                    ->itemType('Heading', [
+                        TextInput::make('name')
+                            ->hidden()
+                            ->required(),
+                    ])
+                    ->itemType('Page', [
+                        Select::make('url')
+                            ->options(Page::where('is_published', 1)->pluck('title', 'slug'))
+                            ->label('Page')
+                            ->required(),
+                    ]),
+                SpatieLaravelTranslatablePlugin::make()
+                    ->defaultLocales(['en', 'it']),
                     
             ])
             ->middleware([
