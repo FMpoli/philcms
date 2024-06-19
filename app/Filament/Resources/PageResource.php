@@ -3,9 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PageResource\Pages;
-use App\Filament\Resources\PageResource\RelationManagers;
 use App\Models\Page;
-use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -13,14 +11,10 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\Builder;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Tabs;
-
-use Filament\Tables\Columns\TextColumn;
 
 use Filament\Forms\Set;
 use Filament\Forms\Get;
@@ -35,7 +29,6 @@ use App\Filament\Resources\PageResource\Blocks\HeroWithBckImage;
 use App\Filament\Resources\PageResource\Blocks\HeroWithBckVideo;
 use App\Filament\Resources\PageResource\Blocks\HeroWithImage;
 use App\Filament\Resources\PageResource\Blocks\HeroWithVideo;
-use Mvenghaus\FilamentPluginTranslatableInline\Forms\Components\TranslatableContainer;
 use Filament\Resources\Concerns\Translatable;
 
 class PageResource extends Resource
