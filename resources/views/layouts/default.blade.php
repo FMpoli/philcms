@@ -26,11 +26,7 @@
         <header>
             @include('includes.menu')
         </header>
-        <div class="mx-auto content" :class="{'pt-16': !isHome}">
-            @php
-    $locale = session('locale');
-    echo "<div>Current locale: " . ($locale ?: 'not set') . "</div>";
-@endphp
+        <div>
             @yield('content')
         </div>
         <footer>

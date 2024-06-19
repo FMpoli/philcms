@@ -61,7 +61,7 @@ class AdminPanelProvider extends PanelProvider
                         TextInput::make('id')
                             ->label('ID')
                             ->required(),
-                    
+
                     ])
                     ->itemType('Heading', [
                         TextInput::make('name')
@@ -70,13 +70,17 @@ class AdminPanelProvider extends PanelProvider
                     ])
                     ->itemType('Page', [
                         Select::make('url')
-                            ->options(Page::where('is_published', 1)->pluck('title', 'slug'))
+                            ->options(Page::where('is_published', 1)->get()->mapWithKeys(function ($page) {
+                                $locale = app()->getLocale();
+                                $slug = $page->getTranslation('slug', $locale); // Assicurati che il modello Page abbia la funzione getTranslation
+                                return [$slug => $page->title];
+                            }))
                             ->label('Page')
                             ->required(),
                     ]),
                 SpatieLaravelTranslatablePlugin::make()
                     ->defaultLocales(['en', 'it']),
-                    
+
             ])
             ->middleware([
                 EncryptCookies::class,

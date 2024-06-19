@@ -8,8 +8,14 @@ use Illuminate\Support\Facades\Log;
 
 class PageController extends Controller
 {
-    public function show($slug)
+    public function show($slug = '')
     {
+        // Controlla se lo slug è vuoto
+        if (empty($slug)) {
+            // Imposta lo slug allo slug della pagina home
+            $slug = '/';
+        }
+
         $page = Page::where('slug->' . app()->getLocale(), $slug)->first();
 
         if (!$page) {
