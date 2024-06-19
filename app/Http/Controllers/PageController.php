@@ -16,6 +16,6 @@ class PageController extends Controller
             abort(404);
         }
 
-        return view('page', compact('page'));
+        return view('pages.default', compact('page'));
     }
 }
