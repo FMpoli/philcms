@@ -1,7 +1,4 @@
-@php
-    $mediaValue = is_array($media) ? reset($media) : $media;
-@endphp
-<section class="h-screen bg-center bg-cover md:py-0" style="background-image: url('{{ Storage::url($mediaValue) }}');">
+<section class="h-screen bg-center bg-cover md:py-0" style="background-image: url('{{ Storage::url($block['data']['media']) }}');">
     <div class="flex items-center justify-center h-full bg-gray-900 bg-opacity-50">
         <div class="text-center">
             <h1 class="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl xl:text-6xl dark:text-white">{{ $block['data']['title'] }}</h1>
