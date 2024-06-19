@@ -53,7 +53,7 @@ class PageResource extends Resource
             Tabs::make('Tabs')
                 ->tabs([
                     Tabs\Tab::make('Details')
-                        ->schema([     
+                        ->schema([
                             TextInput::make('title')
                                 ->label('Page title')
                                 ->maxLength(255)
@@ -62,7 +62,7 @@ class PageResource extends Resource
                                     if (($get('slug') ?? '') !== Str::slug($old)) {
                                         return;
                                     }
-                                
+
                                     $set('slug', Str::slug($state));
                                 })
                                 ->required(),
@@ -98,7 +98,7 @@ class PageResource extends Resource
                                     HeroWithBckVideo::make(),
                                     HeroWithImage::make(),
                                     HeroWithVideo::make(),
-                                
+
                             ]),
                         ]),
                     Tabs\Tab::make('SEO')
@@ -119,7 +119,7 @@ class PageResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title')
-                   
+
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('slug')

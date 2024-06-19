@@ -4,10 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>App Name - @yield('title')</title>
-    <script>
-        const currentLocale = '{{ app()->getLocale() }}';
-        console.log('Current Locale:', currentLocale);
-    </script>
+
     @vite('resources/js/app.js')
     @vite('resources/css/app.css')
 </head>
@@ -29,7 +26,11 @@
         <header>
             @include('includes.menu')
         </header>
-        <div class="content mx-auto" :class="{'pt-16': !isHome}">
+        <div class="mx-auto content" :class="{'pt-16': !isHome}">
+            @php
+    $locale = session('locale');
+    echo "<div>Current locale: " . ($locale ?: 'not set') . "</div>";
+@endphp
             @yield('content')
         </div>
         <footer>
