@@ -61,7 +61,14 @@ class AdminPanelProvider extends PanelProvider
                         TextInput::make('id')
                             ->label('ID')
                             ->required(),
-
+                        Select::make('url')
+                            ->options(Page::where('is_published', 1)->get()->mapWithKeys(function ($page) {
+                                $locale = app()->getLocale();
+                                $slug = $page->getTranslation('slug', $locale); // Assicurati che il modello Page abbia la funzione getTranslation
+                                return [$slug => $page->title];
+                            }))
+                            ->label('Page')
+                            ->required(),
                     ])
                     ->itemType('Heading', [
                         TextInput::make('name')
