@@ -22,6 +22,7 @@ use App\Models\Page;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\SpatieLaravelTranslatablePlugin;
+use Filament\Forms\Get;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -76,12 +77,24 @@ class AdminPanelProvider extends PanelProvider
                             ->required(),
                     ])
                     ->itemType('Page', [
+                        Select::make('localelink')
+                            ->options([
+                                'en' => 'English',
+                                'it' => 'Italian',
+                            ])
+                            ->default(app()->getLocale())
+                            ->label('Language')
+                            ->required()
+                            ->live(), // Assicura che la select 'url' si aggiorni quando cambia 'localelink'
                         Select::make('url')
-                            ->options(Page::where('is_published', 1)->get()->mapWithKeys(function ($page) {
-                                $locale = app()->getLocale();
-                                $slug = $page->getTranslation('slug', $locale); // Assicurati che il modello Page abbia la funzione getTranslation
-                                return [$slug => $page->title];
-                            }))
+                            ->options(function (Get $get) {
+                                $locale = $get('localelink') ? $get('localelink') : app()->getLocale();
+                                return Page::where('is_published', 1)->get()->mapWithKeys(function ($page) use ($locale) {
+                                    $slug = $page->getTranslation('slug', $locale); // Assicurati che il modello Page abbia la funzione getTranslation
+                                    $title = $page->getTranslation('title', $locale); // Assicurati che il modello Page abbia la funzione getTranslation
+                                    return [$slug => $title];
+                                });
+                            })
                             ->label('Page')
                             ->required(),
                     ]),

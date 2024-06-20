@@ -8,9 +8,8 @@
                 <a href="{{ url('/') }}"><img :src="isHovered || isScrolled || open || !isHome ? logoColor : logoWhite" alt="Logo" class="h-10"></a>
             </div>
             <div class="items-center hidden uppercase md:flex">
-
-                @foreach($mainMenuItems->items as $item)
-                    <a href="{{ $item['type'] == 'anchor-link' ? $item['data']['url'] . '#' . $item['data']['id'] : $item['data']['url'] }}"
+                @foreach($mainMenuItems as $item)
+                    <a href="{{ $item['data']['url'] }}"
                     {{ isset($item['data']['target']) ? 'target=' . $item['data']['target'] : '' }}
                     class="mx-4 transition duration-300"
                     :class="{'text-black hover:underline': isHovered || isScrolled || !isHome, 'text-white': !isHovered && !isScrolled && isHome}">
@@ -29,8 +28,8 @@
             </div>
         </div>
         <div :class="{'block': open, 'hidden': !open}" class="md:hidden">
-            @foreach($mainMenuItems->items as $item)
-                <a @click="open = !open" href="{{ $item['type'] == 'anchor-link' ? $item['data']['url'] . '#' . $item['data']['id'] : $item['data']['url'] }}"
+            @foreach($mainMenuItems as $item)
+                <a @click="open = !open" href="{{ $item['data']['url'] }}"
                 {{ isset($item['data']['target']) ? 'target=' . $item['data']['target'] : '' }}
                 class="block mt-4 uppercase transition duration-300" :class="{'text-black hover:underline': open || isScrolled || !isHome, 'text-white': !open && !isScrolled && isHome}">
                     {{ $item['label'] }}
@@ -49,14 +48,3 @@
         </div>
     </div>
 </nav>
-
-<script>
-    function changeLanguage(locale) {
-        fetch(`/set-locale/${locale}`)
-            .then(response => {
-                if (response.ok) {
-                    window.location.reload();
-                }
-            });
-    }
-</script>
