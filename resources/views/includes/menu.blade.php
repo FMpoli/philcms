@@ -1,12 +1,6 @@
 <!-- Navigation -->
-<nav x-cloak class="fixed z-10 w-full transition duration-300" x-data="{ open: false, isHovered: false, langOpen: false, isHome: false, languages: [], currentLang: '{{ app()->getLocale() }}' }"
+<nav x-cloak class="fixed z-10 w-full transition duration-300" x-data="{ open: false, isHovered: false, langOpen: false, isHome: (window.location.pathname === '/' || window.location.pathname === '') }"
     @mouseenter="isHovered = true" @mouseleave="isHovered = false"
-    {{-- x-init="
-        isHome = (window.location.pathname === '/');
-        fetch('/get-languages')
-            .then(response => response.json())
-            .then(data => { languages = data.languages; });
-    " --}}
     :class="{'bg-white bg-opacity-100 text-black': isHovered || isScrolled || open || !isHome, 'bg-transparent text-white': !isHovered && !isScrolled && !open && isHome}">
     <div class="container px-6 py-3 mx-auto">
         <div class="flex items-center justify-between">
@@ -22,25 +16,6 @@
                         {{ $item['label'] }}
                     </a>
                 @endforeach
-                <!--div class="relative" @mouseenter="langOpen = true" @mouseleave="langOpen = false">
-                    <button @click="langOpen = !langOpen; console.log(langOpen)" class="px-4 py-2 rounded focus:outline-none" :class="{'bg-blue-500 text-white': langOpen, 'bg-transparent': !langOpen}">Language</button>
-                    <div x-show="langOpen" @click.away="langOpen = false" x-transition x-cloak class="absolute mt-2 bg-white rounded shadow-lg">
-                        <template x-for="lang in languages" :key="lang">
-                            <a href="#" @click.prevent="changeLanguage(lang)" :class="{'bg-blue-500 text-white': currentLang === lang, 'text-black': currentLang !== lang}" class="block px-4 py-2 hover:bg-blue-500 hover:text-white">
-                                <span x-text="lang"></span>
-                            </a>
-                        </template>
-                    </div>
-                </div-->
-                {{-- <form action="{{ route('language.switch') }}" method="POST">
-                    @csrf
-                    <select name="language" onchange="this.form.submit()" id="locale" class="px-4 py-2 rounded">
-                            <option value="it">Italiano</option>
-                            <option value="en">English</option>
-
-                    </select>
-
-                </form> --}}
                 @include('includes.lang-switcher')
             </div>
             <div class="flex items-center md:hidden">
@@ -53,23 +28,6 @@
             </div>
         </div>
         <div :class="{'block': open, 'hidden': !open}" class="md:hidden">
-            <form class="pt-2">
-                <label for="search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
-                <div class="relative">
-                    <div class="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
-                        <svg class="w-4 h-4 text-gray-500" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                        </svg>
-                    </div>
-                    <input type="search" id="search"
-                        class="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg ps-10 bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Search" required>
-                    <button type="submit"
-                        class="text-white absolute end-2.5 bottom-2.5 bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">Search</button>
-                </div>
-            </form>
             @foreach($mainMenuItems->items as $item)
                 <a @click="open = !open" href="{{ $item['type'] == 'anchor-link' ? $item['data']['page'] . '#' . $item['data']['id'] : $item['data']['url'] }}"
                 {{ isset($item['data']['target']) ? 'target=' . $item['data']['target'] : '' }}
@@ -78,7 +36,7 @@
                 </a>
             @endforeach
             <div class="relative">
-                <button @click="langOpen = !langOpen; console.log(langOpen)" class="block w-full py-2 mt-4 text-left focus:outline-none" :class="{'bg-blue-500 text-white': langOpen, 'bg-transparent': !langOpen}">Language</button>
+                <button @click="langOpen = !langOpen" class="block w-full py-2 mt-4 text-left focus:outline-none" :class="{'bg-blue-500 text-white': langOpen, 'bg-transparent': !langOpen}">Language</button>
                 <div x-show="langOpen" @click.away="langOpen = false" x-transition x-cloak class="mt-2 bg-white rounded shadow-lg">
                     <template x-for="lang in languages" :key="lang">
                         <a href="#" @click.prevent="changeLanguage(lang)" :class="{'bg-blue-500 text-white': currentLang === lang, 'text-black': currentLang !== lang}" class="block px-4 py-2 hover:bg-blue-500 hover:text-white">
