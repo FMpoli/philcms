@@ -100,6 +100,8 @@ class AdminPanelProvider extends PanelProvider
                     ]),
                 SpatieLaravelTranslatablePlugin::make()
                     ->defaultLocales(['en', 'it']),
+                \TomatoPHP\FilamentMenus\FilamentMenusPlugin::make()
+
 
             ])
             ->middleware([

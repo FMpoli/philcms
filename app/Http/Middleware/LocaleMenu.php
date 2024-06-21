@@ -7,7 +7,7 @@ use App\Models\Page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use RyanChandler\FilamentNavigation\Models\Navigation;
-
+use TomatoPHP\FilamentMenus\FilamentMenusPlugin;
 class LocaleMenu
 {
     public function handle(Request $request, Closure $next)

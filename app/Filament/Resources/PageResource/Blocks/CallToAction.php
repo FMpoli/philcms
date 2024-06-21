@@ -4,6 +4,7 @@ namespace App\Filament\Resources\PageResource\Blocks;
 
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\TextInput;
+use TomatoPHP\FilamentIcons\Components\IconPicker;
 
 class CallToAction
 {
@@ -22,14 +23,17 @@ class CallToAction
                     ->label('Description')
                     ->placeholder('Enter text description')
                     ->required(),
-                TextInput::make('button_text')
+                TextInput::make('text')
                     ->label('Button text')
                     ->placeholder('Enter the button text')
                     ->required(),
-                TextInput::make('button_url')
+                TextInput::make('url')
                     ->label('Button url')
                     ->placeholder('Enter the button url')
                     ->required(),
+                IconPicker::make('icon')
+                    ->default('heroicon-o-academic-cap')
+                    ->label('Icon'),
             ]);
     }
 }

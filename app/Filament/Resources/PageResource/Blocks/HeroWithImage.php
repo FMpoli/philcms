@@ -7,14 +7,13 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Components\Repeater;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
-use Guava\FilamentIconPicker\Forms\IconPicker;
-use Guava\FilamentIconPicker\Layout;
+use TomatoPHP\FilamentIcons\Components\IconPicker;
 use Illuminate\Support\HtmlString;
 
 
 class HeroWithImage
 {
-    
+
     public static function make(): Block
     {
         return Block::make('hero-with-image')
@@ -38,30 +37,23 @@ class HeroWithImage
                         'left' => 'Left',
                         'right' => 'Right'
                     ]),
-                
+
                 Repeater::make('buttons')
                     ->schema([
-                        TextInput::make('button_text')
+                        TextInput::make('text')
                             ->label('Button text')
                             ->placeholder('Enter the button text'),
-                        TextInput::make('button_url')
+                        TextInput::make('url')
                             ->label('Button url')
                             ->placeholder('Enter the button url'),
                         IconPicker::make('icon')
-                            ->layout(Layout::ON_TOP)
-                            ->label('Icon')
-                            ->preload()
-                            ->helperText(new HtmlString('Select an icon from <a class="underline" href="https://heroicons.com/" target="_blank">Heroicons</a>'))                            
-                            ->columns([
-                                'default' => 3,
-                                'lg' => 3,
-                                '2xl' => 5,
-                            ])
+                            ->default('heroicon-o-academic-cap')
+                            ->label('Icon'),
                     ])
                     ->maxItems(2)
                     ->minItems(0)
-                    ->columns(2),   
-                            
+                    ->columns(2),
+
             ]);
     }
 }

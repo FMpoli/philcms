@@ -6,8 +6,7 @@ use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Repeater;
-use Guava\FilamentIconPicker\Forms\IconPicker;
-use Guava\FilamentIconPicker\Layout;
+use TomatoPHP\FilamentIcons\Components\IconPicker;
 use Illuminate\Support\HtmlString;
 
 class features
@@ -24,22 +23,15 @@ class features
                         ->label('Sub title')
                         ->required(),
                 Repeater::make('features')
-                    ->schema([                     
-                        TextInput::make('feature_title')
+                    ->schema([
+                        TextInput::make('title')
                             ->columnspan(2)
                             ->label('Feature Title'),
-                        Textarea::make('feature_description')
+                        Textarea::make('description')
                             ->label('Feature Description'),
                         IconPicker::make('icon')
-                            ->layout(Layout::ON_TOP)
-                            ->label('Icon')
-                            ->preload()
-                            ->helperText(new HtmlString('Select an icon from <a class="underline" href="https://heroicons.com/" target="_blank">Heroicons</a>'))                            
-                            ->columns([
-                                'default' => 3,
-                                'lg' => 3,
-                                '2xl' => 5,
-                            ])
+                            ->default('heroicon-o-academic-cap')
+                            ->label('Icon'),
                     ])
                     ->minItems(0)
                     ->columns(2),
