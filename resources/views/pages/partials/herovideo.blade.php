@@ -1,11 +1,11 @@
 @php
     $videoUrl = is_array($block['data']['video']) ? reset($block['data']['video']) : $block['data']['video'];
+    // $preset = new ThumbnailPreset();
 @endphp
 <section class="bg-white dark:bg-gray-900">
     <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 [&_[x-cloak]]:hidden" x-data="{ modalOpen: false }">
-
         @if($block['data']['video_position']== 'left')
-            <div class="mb-4 lg:col-span-5 lg:flex lg:justify-end md:mb-0">
+            <div class="mb-4 lg:col-span-5 lg:flex lg:justify-start md:mb-0">
                 <div class="[&_[x-cloak]]:hidden">
                     <!-- Video thumbnail -->
                     <button
@@ -14,7 +14,17 @@
                         aria-controls="modal"
                         aria-label="Watch the video"
                     >
-                        <x-curator-glider :media="$block['data']['video_thumbnail']" class="w-full rounded-3xl lg:w-auto"/>
+
+                        {{-- @if ($media->hasCuration('thumbnail')) --}}
+                            <x-curator-curation :media="$block['data']['video_thumbnail']" curation="heroImage" class="w-full rounded-3xl lg:w-auto"/>
+                        {{-- @else
+                            <x-curator-glider
+                                class="object-cover w-auto"
+                                :media="$block['data']['video_thumbnail']"
+                                :width="$preset->getWidth()"
+                                :height="$preset->getHeight()"
+                            />
+                        @endif --}}
                         <!-- Play icon -->
                         <svg class="absolute transition-transform duration-300 ease-in-out pointer-events-none group-hover:scale-110" xmlns="http://www.w3.org/2000/svg" width="72" height="72">
                             <circle class="fill-white" cx="36" cy="36" r="36" fill-opacity=".8" />
@@ -83,7 +93,7 @@
         </div>
         <!-- End: Modal dialog -->
         @if($block['data']['video_position'] == 'right')
-            <div class="mt-4 lg:col-span-5 lg:flex md:mt-0">
+            <div class="mt-4 lg:col-span-5 lg:flex md:mt-0 lg:justify-end">
                 <div class="[&_[x-cloak]]:hidden">
                     <!-- Video thumbnail -->
                     <button
@@ -92,8 +102,8 @@
                         aria-controls="modal"
                         aria-label="Watch the video"
                     >
-                        <x-curator-glider :media="$block['data']['video_thumbnail']" class="w-full rounded-3xl lg:w-auto"/>
-                        <!-- Play icon -->
+                    <x-curator-curation :media="$block['data']['video_thumbnail']" curation="heroImage" class="w-full rounded-3xl lg:w-auto"/>
+                                            <!-- Play icon -->
                         <svg class="absolute transition-transform duration-300 ease-in-out pointer-events-none group-hover:scale-110" xmlns="http://www.w3.org/2000/svg" width="72" height="72">
                             <circle class="fill-white" cx="36" cy="36" r="36" fill-opacity=".8" />
                             <path class="fill-indigo-500 drop-shadow-2xl" d="M44 36a.999.999 0 0 0-.427-.82l-10-7A1 1 0 0 0 32 29V43a.999.999 0 0 0 1.573.82l10-7A.995.995 0 0 0 44 36V36c0 .001 0 .001 0 0Z" />
