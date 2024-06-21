@@ -5,7 +5,7 @@ namespace App\Filament\Resources\PageResource\Blocks;
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\TextInput;
 use TomatoPHP\FilamentIcons\Components\IconPicker;
-
+use Filament\Forms\Components\Repeater;
 class CallToAction
 {
     public static function make(): Block
@@ -23,17 +23,21 @@ class CallToAction
                     ->label('Description')
                     ->placeholder('Enter text description')
                     ->required(),
-                TextInput::make('text')
-                    ->label('Button text')
-                    ->placeholder('Enter the button text')
-                    ->required(),
-                TextInput::make('url')
-                    ->label('Button url')
-                    ->placeholder('Enter the button url')
-                    ->required(),
-                IconPicker::make('icon')
-                    ->default('heroicon-o-academic-cap')
-                    ->label('Icon'),
+                Repeater::make('buttons')
+                    ->schema([
+                        TextInput::make('text')
+                            ->label('Button text')
+                            ->placeholder('Enter the button text'),
+                        TextInput::make('url')
+                            ->label('Button url')
+                            ->placeholder('Enter the button url'),
+                        IconPicker::make('icon')
+                            ->default('heroicon-o-academic-cap')
+                            ->label('Icon'),
+                    ])
+                    ->minItems(0)
+                    ->maxItems(2)
+                    ->columns(2),
             ]);
     }
 }
