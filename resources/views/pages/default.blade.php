@@ -20,6 +20,8 @@
             @include('pages.partials.heroimage', ['block' => $block])
         @elseif ($block['type'] == 'hero-with-video')
             @include('pages.partials.herovideo', ['block' => $block])
+        @elseif ($block['type'] == 'text-with-image')
+            @include('pages.partials.textimage', ['block' => $block])
         @endif
     @endforeach
 @endsection

@@ -29,6 +29,7 @@ use App\Filament\Resources\PageResource\Blocks\HeroWithBckImage;
 use App\Filament\Resources\PageResource\Blocks\HeroWithBckVideo;
 use App\Filament\Resources\PageResource\Blocks\HeroWithImage;
 use App\Filament\Resources\PageResource\Blocks\HeroWithVideo;
+use App\Filament\Resources\PageResource\Blocks\TextWithImage;
 use Filament\Resources\Concerns\Translatable;
 
 class PageResource extends Resource
@@ -91,6 +92,7 @@ class PageResource extends Resource
                                     HeroWithBckVideo::make(),
                                     HeroWithImage::make(),
                                     HeroWithVideo::make(),
+                                    TextWithImage::make(),
 
                             ]),
                         ]),

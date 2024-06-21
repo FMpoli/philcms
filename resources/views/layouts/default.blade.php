@@ -26,7 +26,7 @@
         <header>
             @include('includes.menu')
         </header>
-        <div>
+        <div :class="{ 'pt-16': !isHome }">
             @yield('content')
         </div>
         <footer>
