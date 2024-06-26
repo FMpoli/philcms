@@ -7,7 +7,6 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Repeater;
 use TomatoPHP\FilamentIcons\Components\IconPicker;
-use Illuminate\Support\HtmlString;
 use Filament\Forms\Components\ColorPicker;
 
 class features

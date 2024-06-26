@@ -8284,16 +8284,16 @@
         },
         {
             "name": "tomatophp/filament-menus",
-            "version": "v1.0.3",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomatophp/filament-menus.git",
-                "reference": "2ccf0f318c3de2c9e4b0c820df90646f2cdabcf3"
+                "reference": "7370aea90c7bc149773f9922450d976126b64be0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-menus/zipball/2ccf0f318c3de2c9e4b0c820df90646f2cdabcf3",
-                "reference": "2ccf0f318c3de2c9e4b0c820df90646f2cdabcf3",
+                "url": "https://api.github.com/repos/tomatophp/filament-menus/zipball/7370aea90c7bc149773f9922450d976126b64be0",
+                "reference": "7370aea90c7bc149773f9922450d976126b64be0",
                 "shasum": ""
             },
             "require": {
@@ -8327,18 +8327,20 @@
                     "email": "info@3x1.io"
                 }
             ],
-            "description": "Menu View Generator Using View Component",
+            "description": "Menu Database builder to use it as a navigation on Filament Panel or as a Livewire Component",
             "keywords": [
+                "filamentphp",
                 "generator",
                 "laravel",
                 "menus",
+                "plugin",
                 "routes",
                 "url",
                 "views"
             ],
             "support": {
                 "issues": "https://github.com/tomatophp/filament-menus/issues",
-                "source": "https://github.com/tomatophp/filament-menus/tree/v1.0.3"
+                "source": "https://github.com/tomatophp/filament-menus/tree/v1.0.4"
             },
             "funding": [
                 {
@@ -8346,7 +8348,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-05-15T11:42:35+00:00"
+            "time": "2024-06-26T09:47:25+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

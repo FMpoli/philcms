@@ -2,7 +2,7 @@
 @php
     $mediaValue = reset($media);
 @endphp
-<section class="bg-white dark:bg-gray-900">
+<section style="background-color: {{ $background_color }}">
     <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
         @if($image_position == 'left')
             <div class="mb-4 lg:col-span-5 lg:flex lg:justify-start md:mb-0">

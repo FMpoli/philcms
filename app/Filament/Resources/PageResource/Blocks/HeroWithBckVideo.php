@@ -8,7 +8,6 @@ use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Components\FileUpload;
 use TomatoPHP\FilamentIcons\Components\IconPicker;
-use Illuminate\Support\HtmlString;
 
 class HeroWithBckVideo
 {

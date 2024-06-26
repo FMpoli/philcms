@@ -1,4 +1,4 @@
-<section class="bg-white dark:bg-gray-900">
+<section style="background-color: {{ $block['data']['background_color'] }}">
     <div class="px-4 py-8 mx-auto max-w-7xl sm:py-16 lg:px-6">
         <h1 class="mb-4 text-4xl font-bold tracking-tight text-gray-900 lg:font-extrabold lg:text-6xl lg:leading-none dark:text-white lg:text-center xl:px-36 lg:mb-7">{{ $block['data']['title'] }}</h1>
         <p class="mb-10 text-lg font-normal text-gray-500 dark:text-gray-400 lg:text-center lg:text-xl xl:px-60">{{ $block['data']['description'] }}</p>

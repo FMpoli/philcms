@@ -7,7 +7,7 @@
                 </a>
             </div>
             <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-                @foreach($footerMenuItems as $item)
+                {{-- @foreach($footerMenuItems as $item)
                     @if($item['type'] == 'heading')
                         <div>
                             <h2 class="mb-6 text-sm font-semibold text-gray-200 uppercase dark:text-white">{{ $item['label'] }}</h2>
@@ -39,7 +39,7 @@
                             {{ $item['label'] }}
                         </a>
                     @endif
-                @endforeach
+                @endforeach --}}
             </div>
         </div>
         <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />

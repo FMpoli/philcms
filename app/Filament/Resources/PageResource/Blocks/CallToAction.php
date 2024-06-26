@@ -6,6 +6,7 @@ use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\TextInput;
 use TomatoPHP\FilamentIcons\Components\IconPicker;
 use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\ColorPicker;
 class CallToAction
 {
     public static function make(): Block
@@ -23,6 +24,7 @@ class CallToAction
                     ->label('Description')
                     ->placeholder('Enter text description')
                     ->required(),
+                ColorPicker::make('background_color'),
                 Repeater::make('buttons')
                     ->schema([
                         TextInput::make('text')

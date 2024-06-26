@@ -8,8 +8,7 @@ use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Components\Repeater;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use TomatoPHP\FilamentIcons\Components\IconPicker;
-use Illuminate\Support\HtmlString;
-
+use Filament\Forms\Components\ColorPicker;
 
 class HeroWithImage
 {
@@ -37,7 +36,7 @@ class HeroWithImage
                         'left' => 'Left',
                         'right' => 'Right'
                     ]),
-
+                ColorPicker::make('background_color'),
                 Repeater::make('buttons')
                     ->schema([
                         TextInput::make('text')

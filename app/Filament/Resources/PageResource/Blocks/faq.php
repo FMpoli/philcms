@@ -5,7 +5,7 @@ namespace App\Filament\Resources\PageResource\Blocks;
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Repeater;
-
+use Filament\Forms\Components\ColorPicker;
 class faq
 {
     public static function make(): Block
@@ -15,10 +15,11 @@ class faq
             ->preview('filament.content.blocks-previews.faq')
             ->schema([
                 TextInput::make('title')
-                            ->label('Title')
-                            ->placeholder('Frequently asked questions')
-                            ->columnSpan(2)
-                            ->required(),
+                        ->label('Title')
+                        ->placeholder('Frequently asked questions')
+                        ->columnSpan(2)
+                        ->required(),
+                ColorPicker::make('background_color'),
                 Repeater::make('faq')
                     ->schema([
                         TextInput::make('question')

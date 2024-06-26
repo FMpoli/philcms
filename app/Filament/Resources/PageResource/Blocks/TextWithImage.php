@@ -6,7 +6,7 @@ use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\ToggleButtons;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
-
+use Filament\Forms\Components\ColorPicker;
 class TextWithImage
 {
 
@@ -21,6 +21,7 @@ class TextWithImage
                     ->label('Content')
                     ->placeholder('Enter the content'),
                 CuratorPicker::make('media'),
+                ColorPicker::make('background_color'),
                 ToggleButtons::make('image_position')
                     ->label('Image position')
                     ->default('left')

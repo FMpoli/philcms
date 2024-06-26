@@ -1,5 +1,4 @@
 <section style="background-color: {{ $block['data']['background_color'] }}">
-
     <div class="max-w-screen-xl px-4 py-8 mx-auto sm:py-16 lg:px-6">
         <div class="mb-8 lg:mb-16">
             <h2 class="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">{{ $block['data']['title'] }}</h2>

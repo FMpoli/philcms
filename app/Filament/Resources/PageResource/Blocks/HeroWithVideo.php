@@ -9,8 +9,7 @@ use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\FileUpload;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use TomatoPHP\FilamentIcons\Components\IconPicker;
-use Illuminate\Support\HtmlString;
-
+use Filament\Forms\Components\ColorPicker;
 class HeroWithVideo
 {
     public static function make(): Block
@@ -35,6 +34,7 @@ class HeroWithVideo
                     ]),
                 CuratorPicker::make('video_thumbnail')
                     ->label('Video thumbnail'),
+                ColorPicker::make('background_color'),
                 Repeater::make('buttons')
                     ->schema([
                         TextInput::make('text')
