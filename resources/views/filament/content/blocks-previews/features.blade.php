@@ -1,4 +1,4 @@
-<section class="bg-white dark:bg-gray-900">
+<section style="background-color: {{ $background_color }}">
     <div class="max-w-screen-xl px-4 py-8 mx-auto sm:py-16 lg:px-6">
         <div class="max-w-screen-md mb-8 lg:mb-16">
             <h2 class="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">{{ $title }}</h2>

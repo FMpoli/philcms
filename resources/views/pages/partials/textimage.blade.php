@@ -19,11 +19,14 @@
                 <x-curator-curation :media="$block['data']['media']" curation="heroImage" class="object-cover w-full h-auto max-h-96 rounded-3xl lg:w-auto"/>
             </div>
         @else
-            <div class="flex flex-col lg:col-span-12 lg:items-start">
+            <div class="flex flex-col lg:col-span-full lg:items-start">
                 <div class="w-full mb-6 prose text-gray-500 dark:prose-dark lg:prose-xl lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
                     {!! $block['data']['content'] !!}
                 </div>
             </div>
+
         @endif
     </div>
+
 </section>
+

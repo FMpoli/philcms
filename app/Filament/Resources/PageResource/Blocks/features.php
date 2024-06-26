@@ -8,6 +8,7 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Repeater;
 use TomatoPHP\FilamentIcons\Components\IconPicker;
 use Illuminate\Support\HtmlString;
+use Filament\Forms\Components\ColorPicker;
 
 class features
 {
@@ -22,6 +23,7 @@ class features
                 TextInput::make('subtitle')
                         ->label('Sub title')
                         ->required(),
+                ColorPicker::make('background_color'),
                 Repeater::make('features')
                     ->schema([
                         TextInput::make('title')

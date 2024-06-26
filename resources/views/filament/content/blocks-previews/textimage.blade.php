@@ -6,8 +6,9 @@ $mediaValue = isset($media) ? reset($media) : null;
     <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
         @if($image_position == 'left' && $mediaValue)
             <div class="flex-shrink-0 mb-4 lg:col-span-5 lg:flex lg:justify-start md:mb-0">
-                <img class="w-full rounded-3xl lg:w-auto" src="{{ Storage::url($mediaValue['path']) }}">
+                <img class="object-cover w-full h-auto max-h-96 rounded-3xl lg:w-auto" src="{{ Storage::url($mediaValue['path']) }}">
             </div>
+
             <div class="flex flex-col lg:col-span-7 lg:ml-auto lg:items-start">
                 <div class="mb-6 prose text-gray-500 dark:prose-dark lg:prose-xl lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
                     {!! $content !!}
