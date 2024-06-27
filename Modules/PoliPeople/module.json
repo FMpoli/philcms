@@ -1,0 +1,33 @@
+{
+    "name": "PoliPeople",
+    "alias": "polipeople",
+    "description": {
+        "ar": "PoliPeople is a versatile plugin designed for efficient personnel management.",
+        "en": "PoliPeople is a versatile plugin designed for efficient personnel management.",
+        "gr": "PoliPeople is a versatile plugin designed for efficient personnel management.",
+        "de": "PoliPeople is a versatile plugin designed for efficient personnel management.",
+        "nl": "PoliPeople is a versatile plugin designed for efficient personnel management.",
+        "fr": "PoliPeople is a versatile plugin designed for efficient personnel management.",
+        "sp": "PoliPeople is a versatile plugin designed for efficient personnel management."
+    },
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\PoliPeople\\Providers\\PoliPeopleServiceProvider"
+    ],
+    "files": [],
+    "title": {
+        "ar": "PoliPeople",
+        "en": "PoliPeople",
+        "gr": "PoliPeople",
+        "de": "PoliPeople",
+        "nl": "PoliPeople",
+        "fr": "PoliPeople",
+        "sp": "PoliPeople"
+    },
+    "color": "#f6dffc",
+    "icon": "heroicon-o-users",
+    "placeholder": "placeholder.webp",
+    "type": "plugin",
+    "version": "v1.0"
+}

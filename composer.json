@@ -15,7 +15,8 @@
         "mvenghaus/filament-plugin-translatable-inline": "^3.0",
         "ryangjchandler/filament-navigation": "v1.0.0-beta5",
         "tomatophp/filament-icons": "^1.0",
-        "tomatophp/filament-menus": "^1.0"
+        "tomatophp/filament-menus": "^1.0",
+        "tomatophp/filament-plugins": "^1.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -58,6 +59,11 @@
     "extra": {
         "laravel": {
             "dont-discover": []
+        },
+        "merge-plugin": {
+            "include": [
+                "Modules/*/composer.json"
+            ]
         }
     },
     "config": {
@@ -66,7 +72,8 @@
         "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true,
-            "php-http/discovery": true
+            "php-http/discovery": true,
+            "wikimedia/composer-merge-plugin": true
         }
     },
     "minimum-stability": "dev",

@@ -1,0 +1,30 @@
+{
+    "name": "nwidart/polipeople",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\PoliPeople\\": "app/",
+            "Modules\\PoliPeople\\Database\\Factories\\": "database/factories/",
+            "Modules\\PoliPeople\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\PoliPeople\\Tests\\": "tests/"
+        }
+    }
+}
